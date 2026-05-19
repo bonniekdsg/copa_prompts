@@ -7,6 +7,8 @@ const backToHero = document.getElementById("back-to-hero");
 const heroSection = document.getElementById("topo");
 
 function setAudioState(state) {
+    audioToggle.classList.toggle("is-playing", state === "playing");
+
     if (state === "playing") {
         audioStatus.innerHTML = 'ÁUDIO <strong>LIGADO</strong>';
         return;
