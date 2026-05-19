@@ -64,6 +64,10 @@ body {
         linear-gradient(180deg, rgba(3, 11, 28, 0.96), rgba(2, 8, 20, 0.98));
 }
 
+#torneio {
+    background: rgba(3, 11, 28, 0.96);
+}
+
 .section-shell {
     width: min(1180px, 100%);
     margin: 0 auto;
