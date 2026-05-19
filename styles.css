@@ -158,7 +158,6 @@ body {
     width: min(100%, 36rem);
     height: auto;
     filter: drop-shadow(0 0 28px rgba(0, 163, 255, 0.3));
-    mix-blend-mode: screen;
 }
 
 .torneio-cards {
