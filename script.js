@@ -6,19 +6,16 @@ const shield = document.querySelector(".shield");
 
 function setAudioState(state) {
     if (state === "playing") {
-        audioStatus.textContent = "Áudio tocando";
-        audioToggle.textContent = "Bloquear áudio";
+        audioStatus.innerHTML = 'ÁUDIO <strong>LIGADO</strong>';
         return;
     }
 
     if (state === "blocked") {
-        audioStatus.textContent = "Áudio bloqueado";
-        audioToggle.textContent = "Ativar áudio";
+        audioStatus.innerHTML = 'ÁUDIO <strong>BLOQUEADO</strong>';
         return;
     }
 
-    audioStatus.textContent = "Áudio pausado";
-    audioToggle.textContent = "Ativar áudio";
+    audioStatus.innerHTML = 'ÁUDIO <strong>PAUSADO</strong>';
 }
 
 function playAudio() {
