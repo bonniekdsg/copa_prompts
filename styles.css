@@ -673,13 +673,12 @@ body {
     display: grid;
     place-items: center;
     min-height: clamp(21rem, 38vw, 33rem);
-    isolation: isolate;
 }
 
 .premio-visual::before {
     content: "";
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     width: min(90%, 34rem);
     aspect-ratio: 1;
     border-radius: 50%;
@@ -689,6 +688,8 @@ body {
 }
 
 .premio-visual img {
+    position: relative;
+    z-index: 1;
     width: min(100%, 30rem);
     height: auto;
     object-fit: contain;
