@@ -208,12 +208,14 @@ body {
     display: grid;
     place-items: center;
     min-height: clamp(22rem, 34vw, 31rem);
+    isolation: isolate;
 }
 
 .torneio-art img {
     width: min(100%, 40rem);
     height: auto;
     filter: drop-shadow(0 0 32px rgba(0, 163, 255, 0.28));
+    mix-blend-mode: screen;
 }
 
 .torneio-cards {
@@ -235,6 +237,7 @@ body {
     background: rgba(4, 13, 31, 0.76);
     box-shadow: inset 0 0 0 1px rgba(0, 163, 255, 0.08), 0 0 24px rgba(0, 115, 255, 0.16);
     clip-path: polygon(5% 0, 95% 0, 100% 8%, 100% 92%, 95% 100%, 5% 100%, 0 92%, 0 8%);
+    isolation: isolate;
 }
 
 .torneio-card::after {
@@ -254,6 +257,7 @@ body {
     height: clamp(4rem, 5.5vw, 5.3rem);
     object-fit: contain;
     filter: drop-shadow(0 0 18px rgba(0, 163, 255, 0.28));
+    mix-blend-mode: screen;
 }
 
 .torneio-card-copy {
