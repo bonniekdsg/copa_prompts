@@ -65,7 +65,22 @@ body {
 }
 
 #torneio {
+    overflow: hidden;
     background: rgba(3, 11, 28, 0.96);
+}
+
+#torneio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: url("assets/bg_torneio.webp") center / cover no-repeat;
+    opacity: 0.5;
+}
+
+#torneio > .section-shell {
+    position: relative;
+    z-index: 1;
 }
 
 .section-shell {
