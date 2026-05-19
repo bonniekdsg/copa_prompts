@@ -5,6 +5,59 @@ const heroBadge = document.querySelector(".hero-badge");
 const shield = document.querySelector(".shield");
 const backToHero = document.getElementById("back-to-hero");
 const heroSection = document.getElementById("topo");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let scrollAnimationFrame = null;
+
+function getScrollTop() {
+    const scroller = document.scrollingElement || document.documentElement;
+    return scroller.scrollTop || window.scrollY || document.body.scrollTop || 0;
+}
+
+function setScrollTop(value) {
+    const scroller = document.scrollingElement || document.documentElement;
+    scroller.scrollTop = value;
+    document.body.scrollTop = value;
+    window.scrollTo(0, value);
+}
+
+function easeInOutCubic(progress) {
+    return progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+}
+
+function smoothScrollToElement(target, duration = 1250) {
+    if (reducedMotion.matches) {
+        target.scrollIntoView({ behavior: "auto", block: "start" });
+        return;
+    }
+
+    if (scrollAnimationFrame) {
+        cancelAnimationFrame(scrollAnimationFrame);
+    }
+
+    const scroller = document.scrollingElement || document.documentElement;
+    const start = getScrollTop();
+    const maxScroll = Math.max(0, scroller.scrollHeight - window.innerHeight);
+    const end = Math.min(maxScroll, Math.max(0, start + target.getBoundingClientRect().top));
+    const distance = end - start;
+    const startTime = performance.now();
+
+    function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        setScrollTop(start + distance * easeInOutCubic(progress));
+
+        if (progress < 1) {
+            scrollAnimationFrame = requestAnimationFrame(step);
+            return;
+        }
+
+        scrollAnimationFrame = null;
+    }
+
+    scrollAnimationFrame = requestAnimationFrame(step);
+}
 
 function setAudioState(state) {
     audioToggle.classList.toggle("is-playing", state === "playing");
@@ -105,23 +158,13 @@ if (heroBadge && shield) {
 }
 
 if (backToHero && heroSection) {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    function getScrollTop() {
-        const scroller = document.scrollingElement || document.documentElement;
-        return scroller.scrollTop || window.scrollY || document.body.scrollTop || 0;
-    }
-
     function updateBackToHeroVisibility() {
         const triggerPoint = Math.max(260, heroSection.offsetHeight * 0.7);
         backToHero.classList.toggle("is-visible", getScrollTop() > triggerPoint);
     }
 
     backToHero.addEventListener("click", () => {
-        heroSection.scrollIntoView({
-            behavior: reducedMotion.matches ? "auto" : "smooth",
-            block: "start"
-        });
+        smoothScrollToElement(heroSection, 1250);
     });
 
     window.addEventListener("scroll", updateBackToHeroVisibility, { passive: true });
@@ -129,5 +172,20 @@ if (backToHero && heroSection) {
     document.addEventListener("scroll", updateBackToHeroVisibility, { passive: true });
     updateBackToHeroVisibility();
 }
+
+document.querySelectorAll('.top-nav a[href^="#"]').forEach((link) => {
+    const targetId = link.hash.slice(1);
+    const target = document.getElementById(targetId);
+
+    if (!target) {
+        return;
+    }
+
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        history.pushState(null, "", link.hash);
+        smoothScrollToElement(target, 1350);
+    });
+});
 
 playAudio();
