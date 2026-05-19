@@ -157,7 +157,6 @@ body {
     display: grid;
     place-items: center;
     min-height: clamp(16rem, 26vw, 24rem);
-    isolation: isolate;
 }
 
 .torneio-visual::before {
