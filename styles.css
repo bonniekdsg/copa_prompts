@@ -391,6 +391,16 @@ body {
     padding: 1.15rem 1.1rem;
 }
 
+.inscricao-shell .process-card h3::after {
+    content: "";
+    display: block;
+    width: 2rem;
+    height: 1px;
+    margin-top: 0.55rem;
+    background: #cfff33;
+    box-shadow: 0 0 10px rgba(207, 255, 51, 0.45);
+}
+
 .process-card-head {
     position: relative;
     display: flex;
@@ -461,6 +471,7 @@ body {
 }
 
 .timeline-item {
+    position: relative;
     display: flex;
     gap: 0.85rem;
     align-items: center;
@@ -468,6 +479,31 @@ body {
     border: 0;
     border-bottom: 1px solid rgba(0, 163, 255, 0.1);
     background: rgba(2, 13, 34, 0.34);
+}
+
+.timeline-item::before,
+.timeline-item::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    background: #cfff33;
+}
+
+.timeline-item::before {
+    top: 50%;
+    right: 1rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    transform: translate(50%, -50%) rotate(45deg);
+    box-shadow: 0 0 10px rgba(207, 255, 51, 0.65);
+}
+
+.timeline-item::after {
+    top: 0;
+    right: 1rem;
+    width: 1px;
+    height: 100%;
+    opacity: 0.45;
 }
 
 .timeline-item:nth-child(4n + 3),
@@ -1173,6 +1209,14 @@ h1 {
 
     .timeline-item:nth-child(odd) {
         border-right: 0;
+    }
+
+    .timeline-item::before {
+        right: 0.9rem;
+    }
+
+    .timeline-item::after {
+        right: 0.9rem;
     }
 
     .timeline-item:nth-last-child(-n + 2) {
