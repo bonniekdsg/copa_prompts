@@ -692,6 +692,7 @@ body {
     width: min(100%, 30rem);
     height: auto;
     object-fit: contain;
+    mix-blend-mode: screen;
 }
 
 .faq-list {
