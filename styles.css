@@ -730,6 +730,45 @@ section[id] {
     scroll-margin-top: 1.5rem;
 }
 
+.back-to-hero {
+    position: fixed;
+    right: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(1rem, 3vw, 2rem);
+    z-index: 20;
+    display: inline-grid;
+    place-items: center;
+    width: 3.4rem;
+    height: 3.4rem;
+    border: 1px solid rgba(121, 255, 47, 0.82);
+    color: #cfff33;
+    background: rgba(18, 45, 22, 0.72);
+    box-shadow: inset 0 0 18px rgba(121, 255, 47, 0.16), 0 0 28px rgba(121, 255, 47, 0.28);
+    clip-path: polygon(16% 0, 84% 0, 100% 16%, 100% 84%, 84% 100%, 16% 100%, 0 84%, 0 16%);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.75rem) scale(0.92);
+    transition: opacity 180ms ease, transform 180ms ease, box-shadow 160ms ease;
+}
+
+.back-to-hero.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.back-to-hero:hover,
+.back-to-hero:focus-visible {
+    box-shadow: inset 0 0 18px rgba(121, 255, 47, 0.22), 0 0 34px rgba(121, 255, 47, 0.42);
+    transform: translateY(-0.1rem) scale(1.04);
+}
+
+.back-to-hero svg {
+    width: 1.45rem;
+    height: 1.45rem;
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
 .hero-video {
     position: absolute;
     inset: 0;
@@ -1515,5 +1554,12 @@ h1 {
 
     .timeline-item span {
         min-width: 0;
+    }
+
+    .back-to-hero {
+        width: 3rem;
+        height: 3rem;
+        right: 0.85rem;
+        bottom: 0.85rem;
     }
 }

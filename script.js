@@ -3,6 +3,8 @@ const audioStatus = document.getElementById("audio-status");
 const audioToggle = document.getElementById("audio-toggle");
 const heroBadge = document.querySelector(".hero-badge");
 const shield = document.querySelector(".shield");
+const backToHero = document.getElementById("back-to-hero");
+const heroSection = document.getElementById("topo");
 
 function setAudioState(state) {
     if (state === "playing") {
@@ -98,6 +100,32 @@ if (heroBadge && shield) {
         tilt.targetScale = 1;
         startTilt();
     });
+}
+
+if (backToHero && heroSection) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    function getScrollTop() {
+        const scroller = document.scrollingElement || document.documentElement;
+        return scroller.scrollTop || window.scrollY || document.body.scrollTop || 0;
+    }
+
+    function updateBackToHeroVisibility() {
+        const triggerPoint = Math.max(260, heroSection.offsetHeight * 0.7);
+        backToHero.classList.toggle("is-visible", getScrollTop() > triggerPoint);
+    }
+
+    backToHero.addEventListener("click", () => {
+        heroSection.scrollIntoView({
+            behavior: reducedMotion.matches ? "auto" : "smooth",
+            block: "start"
+        });
+    });
+
+    window.addEventListener("scroll", updateBackToHeroVisibility, { passive: true });
+    window.addEventListener("resize", updateBackToHeroVisibility);
+    document.addEventListener("scroll", updateBackToHeroVisibility, { passive: true });
+    updateBackToHeroVisibility();
 }
 
 playAudio();
