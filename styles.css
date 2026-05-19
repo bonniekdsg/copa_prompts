@@ -25,9 +25,15 @@ html {
 body {
     height: 100vh;
     height: 100svh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     color: var(--text);
     font-family: "Jura", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+}
+
+.page {
+    min-height: 100%;
     background: var(--bg);
 }
 
@@ -41,6 +47,248 @@ body {
     isolation: isolate;
     overflow: hidden;
     background: var(--bg);
+}
+
+.content-section {
+    position: relative;
+    padding: clamp(3.5rem, 8vw, 6rem) clamp(1rem, 5vw, 5rem);
+    background:
+        radial-gradient(circle at top center, rgba(0, 163, 255, 0.12), transparent 42%),
+        linear-gradient(180deg, rgba(2, 8, 20, 0.98), rgba(3, 11, 28, 0.96));
+    border-top: 1px solid rgba(0, 163, 255, 0.12);
+}
+
+.content-section-alt {
+    background:
+        radial-gradient(circle at 15% 0%, rgba(121, 255, 47, 0.08), transparent 32%),
+        linear-gradient(180deg, rgba(3, 11, 28, 0.96), rgba(2, 8, 20, 0.98));
+}
+
+.section-shell {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+}
+
+.section-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.85rem;
+    color: #cfff33;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.section-kicker::before {
+    content: "";
+    width: 2.25rem;
+    height: 1px;
+    background: currentColor;
+    box-shadow: 0 0 12px currentColor;
+}
+
+.section-header {
+    display: grid;
+    gap: 0.85rem;
+    max-width: 54rem;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    color: var(--text);
+    font-size: clamp(1.65rem, 3vw, 2.7rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    text-wrap: balance;
+}
+
+.section-header p {
+    color: var(--muted);
+    font-size: clamp(0.98rem, 1.3vw, 1.08rem);
+    line-height: 1.65;
+    max-width: 52rem;
+}
+
+.info-grid,
+.process-grid,
+.award-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.info-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.process-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.award-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.info-card,
+.process-card,
+.award-card,
+.timeline-panel {
+    position: relative;
+    padding: 1.25rem 1.2rem;
+    border: 1px solid rgba(129, 206, 255, 0.16);
+    background: rgba(4, 13, 31, 0.72);
+    box-shadow: var(--shadow);
+}
+
+.info-card,
+.process-card,
+.award-card {
+    min-height: 100%;
+}
+
+.info-card::before,
+.process-card::before,
+.award-card::before,
+.timeline-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(0, 163, 255, 0.08), transparent 36%);
+    opacity: 0.7;
+}
+
+.info-card h3,
+.process-card h3,
+.award-card h3,
+.timeline-head h3 {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0.55rem;
+    color: #f8fbff;
+    font-size: 1.02rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.info-card p,
+.process-card p,
+.award-card p,
+.timeline-head p,
+.timeline-item p,
+.faq-item p {
+    position: relative;
+    z-index: 1;
+    color: var(--muted);
+    font-size: 0.96rem;
+    line-height: 1.6;
+}
+
+.process-card {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.process-step {
+    position: relative;
+    z-index: 1;
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid rgba(121, 255, 47, 0.35);
+    color: #cfff33;
+    font-size: 0.86rem;
+    font-weight: 900;
+    background: rgba(18, 45, 22, 0.58);
+    box-shadow: 0 0 18px rgba(121, 255, 47, 0.16);
+}
+
+.timeline-panel {
+    margin-top: 1rem;
+}
+
+.timeline-head {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+.timeline-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 0.85rem 0.9rem;
+    border: 1px solid rgba(0, 163, 255, 0.16);
+    background: rgba(2, 13, 34, 0.44);
+}
+
+.timeline-item span {
+    flex: 0 0 auto;
+    min-width: 5.4rem;
+    color: #cfff33;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.award-card-accent {
+    border-color: rgba(121, 255, 47, 0.3);
+    background: rgba(18, 45, 22, 0.52);
+}
+
+.faq-list {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.faq-item {
+    border: 1px solid rgba(129, 206, 255, 0.16);
+    background: rgba(4, 13, 31, 0.72);
+    box-shadow: var(--shadow);
+}
+
+.faq-item summary {
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 1.1rem;
+    color: #f8fbff;
+    font-size: 0.98rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 1rem;
+    color: #cfff33;
+}
+
+.faq-item[open] summary::after {
+    content: "–";
+}
+
+.faq-item p {
+    padding: 0 1.1rem 1rem;
+}
+
+section[id] {
+    scroll-margin-top: 1.5rem;
 }
 
 .hero-video {
@@ -528,6 +776,21 @@ h1 {
         padding: 1.25rem 1rem 1rem;
     }
 
+    .content-section {
+        padding: 2.8rem 1rem;
+    }
+
+    .section-header {
+        margin-bottom: 1.4rem;
+    }
+
+    .info-grid,
+    .process-grid,
+    .award-grid,
+    .timeline-list {
+        grid-template-columns: 1fr;
+    }
+
     .top-nav {
         grid-template-columns: 1fr;
         gap: 0.7rem;
@@ -575,6 +838,24 @@ h1 {
 }
 
 @media (max-width: 560px) {
+    .content-section {
+        padding: 2.4rem 1rem;
+    }
+
+    .section-header h2 {
+        font-size: clamp(1.45rem, 8vw, 2rem);
+    }
+
+    .section-header p,
+    .info-card p,
+    .process-card p,
+    .award-card p,
+    .timeline-head p,
+    .timeline-item p,
+    .faq-item p {
+        font-size: 0.92rem;
+    }
+
     .top-nav {
         font-size: 0.58rem;
     }
@@ -628,5 +909,15 @@ h1 {
         right: auto;
         bottom: 0.65rem;
         transform: translateX(-50%);
+    }
+
+    .timeline-item {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
+    .timeline-item span {
+        min-width: 0;
     }
 }
