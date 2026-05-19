@@ -72,6 +72,14 @@ body {
         rgba(3, 11, 28, 0.96);
 }
 
+#como-funciona {
+    overflow: hidden;
+    background:
+        linear-gradient(rgba(2, 7, 19, 0.36), rgba(2, 7, 19, 0.36)),
+        url("assets/bg_inscricao.webp") center / cover no-repeat,
+        rgba(3, 11, 28, 0.96);
+}
+
 .section-shell {
     width: min(1180px, 100%);
     margin: 0 auto;
@@ -344,6 +352,51 @@ body {
     gap: 0.7rem;
 }
 
+.inscricao-shell .section-header {
+    max-width: 52rem;
+}
+
+.inscricao-shell .section-header h2 {
+    font-size: clamp(1.7rem, 2.9vw, 2.55rem);
+    line-height: 1.06;
+}
+
+.inscricao-shell .section-header p {
+    font-size: clamp(0.96rem, 1.15vw, 1.06rem);
+}
+
+.inscricao-shell .process-grid {
+    gap: clamp(0.8rem, 1.6vw, 1.1rem);
+}
+
+.inscricao-shell .process-card,
+.inscricao-shell .timeline-panel {
+    border-color: rgba(0, 163, 255, 0.46);
+    background: rgba(4, 13, 31, 0.66);
+    box-shadow: inset 0 0 0 1px rgba(0, 163, 255, 0.08), 0 0 28px rgba(0, 115, 255, 0.16);
+}
+
+.inscricao-shell .process-card {
+    min-height: 15.75rem;
+    padding: 1.15rem 1.1rem;
+}
+
+.process-card-head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.process-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: contain;
+    mix-blend-mode: screen;
+}
+
 .process-step {
     position: relative;
     z-index: 1;
@@ -359,20 +412,39 @@ body {
     box-shadow: 0 0 18px rgba(121, 255, 47, 0.16);
 }
 
+.inscricao-shell .process-step {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-color: rgba(121, 255, 47, 0.66);
+    background: rgba(18, 45, 22, 0.3);
+    box-shadow: none;
+}
+
 .timeline-panel {
     margin-top: 1rem;
 }
 
 .timeline-head {
-    display: grid;
-    gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
     margin-bottom: 1rem;
+}
+
+.timeline-icon {
+    position: relative;
+    z-index: 1;
+    width: 2.9rem;
+    height: 2.9rem;
+    object-fit: contain;
+    mix-blend-mode: screen;
 }
 
 .timeline-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
+    gap: 0;
+    border: 1px solid rgba(0, 163, 255, 0.18);
 }
 
 .timeline-item {
@@ -380,8 +452,22 @@ body {
     gap: 0.85rem;
     align-items: center;
     padding: 0.85rem 0.9rem;
-    border: 1px solid rgba(0, 163, 255, 0.16);
-    background: rgba(2, 13, 34, 0.44);
+    border: 0;
+    border-bottom: 1px solid rgba(0, 163, 255, 0.1);
+    background: rgba(2, 13, 34, 0.34);
+}
+
+.timeline-item:nth-child(4n + 3),
+.timeline-item:nth-child(4n + 4) {
+    background: rgba(11, 39, 79, 0.34);
+}
+
+.timeline-item:nth-child(odd) {
+    border-right: 1px solid rgba(0, 163, 255, 0.18);
+}
+
+.timeline-item:nth-last-child(-n + 2) {
+    border-bottom: 0;
 }
 
 .timeline-item span {
@@ -1070,6 +1156,18 @@ h1 {
 
     .torneio-card {
         padding: 1.1rem 1rem;
+    }
+
+    .timeline-item:nth-child(odd) {
+        border-right: 0;
+    }
+
+    .timeline-item:nth-last-child(-n + 2) {
+        border-bottom: 1px solid rgba(0, 163, 255, 0.1);
+    }
+
+    .timeline-item:last-child {
+        border-bottom: 0;
     }
 
 }
