@@ -223,10 +223,9 @@ body {
 }
 
 .torneio-card-icon {
-    width: 4.2rem;
-    height: 4.2rem;
+    width: 4.83rem;
+    height: 4.83rem;
     object-fit: contain;
-    filter: drop-shadow(0 0 18px rgba(0, 163, 255, 0.28));
     mix-blend-mode: screen;
 }
 
@@ -1154,8 +1153,8 @@ h1 {
     }
 
     .torneio-card-icon {
-        width: 3.6rem;
-        height: 3.6rem;
+        width: 4.14rem;
+        height: 4.14rem;
     }
 
     .torneio-card-copy h3 {
