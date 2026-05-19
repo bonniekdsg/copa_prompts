@@ -180,6 +180,7 @@ body {
     height: auto;
     position: relative;
     z-index: 1;
+    mix-blend-mode: screen;
 }
 
 .torneio-cards {
