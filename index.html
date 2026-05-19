@@ -13,30 +13,26 @@
 
 <body>
     <main class="page">
-        <section class="hero">
+        <section id="topo" class="hero">
             <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
                 <source src="https://video.wixstatic.com/video/c96204_252c240dbacf4c8b8817b15be92bce79/720p/mp4/file.mp4" type="video/mp4">
             </video>
 
             <nav class="top-nav" aria-label="Navegação principal">
-                <div class="nav-group">
-                    <a href="#torneio">O Torneio</a>
-                    <a href="#como-funciona">Como Funciona</a>
-                </div>
-                <div class="nav-emblem" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M8 4h8v4a4 4 0 0 1-8 0V4Z" />
-                        <path d="M8 6H5a3 3 0 0 0 3 3" />
-                        <path d="M16 6h3a3 3 0 0 1-3 3" />
-                        <path d="M12 12v5" />
-                        <path d="M9 20h6" />
-                        <path d="M10 17h4" />
-                        <path d="m12 6 .45 1.05 1.15.1-.88.73.27 1.12L12 8.4l-.99.6.27-1.12-.88-.73 1.15-.1L12 6Z" />
-                    </svg>
-                </div>
-                <div class="nav-group">
-                    <a href="#premiacao">Premiação</a>
-                    <a href="#faq">FAQ</a>
+                <div class="nav-shell">
+                    <div class="nav-group nav-left">
+                        <a href="#torneio">O Torneio</a>
+                        <a href="#como-funciona">Como Funciona</a>
+                    </div>
+
+                    <a class="nav-brand" href="#topo" aria-label="Copa de Prompts MPAC">
+                        <img src="assets/logo_copa.svg" alt="" aria-hidden="true">
+                    </a>
+
+                    <div class="nav-group nav-right">
+                        <a href="#premiacao">Premiação</a>
+                        <a href="#faq">FAQ</a>
+                    </div>
                 </div>
             </nav>
 
