@@ -8,7 +8,11 @@ const heroBadge = document.querySelector(".hero-badge");
 const shield = document.querySelector(".shield");
 const backToHero = document.getElementById("back-to-hero");
 const heroSection = document.getElementById("topo");
+const topNav = document.querySelector(".top-nav");
+const navMenuToggle = document.getElementById("nav-menu-toggle");
+const navMenu = document.getElementById("nav-menu");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const mobileNavQuery = window.matchMedia("(max-width: 900px)");
 let scrollAnimationFrame = null;
 
 function getScrollTop() {
@@ -187,9 +191,30 @@ document.querySelectorAll('.top-nav a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (event) => {
         event.preventDefault();
         history.pushState(null, "", link.hash);
+        closeMobileMenu();
         smoothScrollToElement(target, 1350);
     });
 });
+
+function closeMobileMenu() {
+    topNav?.classList.remove("is-open");
+    navMenuToggle?.setAttribute("aria-expanded", "false");
+    navMenuToggle?.setAttribute("aria-label", "Abrir menu");
+}
+
+if (topNav && navMenuToggle && navMenu) {
+    navMenuToggle.addEventListener("click", () => {
+        const isOpen = topNav.classList.toggle("is-open");
+        navMenuToggle.setAttribute("aria-expanded", String(isOpen));
+        navMenuToggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    });
+
+    mobileNavQuery.addEventListener("change", (event) => {
+        if (!event.matches) {
+            closeMobileMenu();
+        }
+    });
+}
 
 const animatedSections = document.querySelectorAll(".content-section");
 const torneioCards = document.querySelector(".torneio-cards");
