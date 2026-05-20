@@ -13,6 +13,7 @@ const navMenuToggle = document.getElementById("nav-menu-toggle");
 const navMenu = document.getElementById("nav-menu");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileNavQuery = window.matchMedia("(max-width: 900px)");
+const supportsIntersectionObserver = "IntersectionObserver" in window;
 let scrollAnimationFrame = null;
 
 function getScrollTop() {
@@ -43,7 +44,6 @@ function smoothScrollToElement(target, duration = 1250) {
         cancelAnimationFrame(scrollAnimationFrame);
     }
 
-    const scroller = document.scrollingElement || document.documentElement;
     const start = getScrollTop();
     const scrollHeight = Math.max(
         document.body.scrollHeight,
@@ -230,10 +230,16 @@ if (topNav && navMenuToggle && navMenu) {
 const animatedSections = document.querySelectorAll(".content-section");
 const torneioCards = document.querySelector(".torneio-cards");
 
+function revealAnimatedContent() {
+    animatedSections.forEach((section) => section.classList.add("is-visible"));
+    torneioCards?.classList.add("is-visible");
+}
+
 if (animatedSections.length) {
-    if (reducedMotion.matches) {
-        animatedSections.forEach((section) => section.classList.add("is-visible"));
+    if (reducedMotion.matches || !supportsIntersectionObserver) {
+        revealAnimatedContent();
     } else {
+        const isMobile = mobileNavQuery.matches;
         const sectionObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting) {
@@ -244,8 +250,8 @@ if (animatedSections.length) {
                 observer.unobserve(entry.target);
             });
         }, {
-            threshold: 0.08,
-            rootMargin: "0px 0px -12% 0px"
+            threshold: isMobile ? 0.01 : 0.08,
+            rootMargin: isMobile ? "0px 0px -2% 0px" : "0px 0px -12% 0px"
         });
 
         animatedSections.forEach((section) => sectionObserver.observe(section));
@@ -253,7 +259,7 @@ if (animatedSections.length) {
 }
 
 if (torneioCards) {
-    if (reducedMotion.matches) {
+    if (reducedMotion.matches || !supportsIntersectionObserver || mobileNavQuery.matches) {
         torneioCards.classList.add("is-visible");
     } else {
         const cardsObserver = new IntersectionObserver((entries, observer) => {
