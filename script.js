@@ -45,7 +45,11 @@ function smoothScrollToElement(target, duration = 1250) {
 
     const scroller = document.scrollingElement || document.documentElement;
     const start = getScrollTop();
-    const maxScroll = Math.max(0, scroller.scrollHeight - window.innerHeight);
+    const scrollHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+    );
+    const maxScroll = Math.max(0, scrollHeight - window.innerHeight);
     const end = Math.min(maxScroll, Math.max(0, start + target.getBoundingClientRect().top));
     const distance = end - start;
     const startTime = performance.now();
@@ -176,12 +180,13 @@ if (backToHero && heroSection) {
 
     window.addEventListener("scroll", updateBackToHeroVisibility, { passive: true });
     window.addEventListener("resize", updateBackToHeroVisibility);
-    document.addEventListener("scroll", updateBackToHeroVisibility, { passive: true });
+    document.addEventListener("scroll", updateBackToHeroVisibility, { passive: true, capture: true });
+    document.body.addEventListener("scroll", updateBackToHeroVisibility, { passive: true });
     updateBackToHeroVisibility();
 }
 
 document.querySelectorAll('.top-nav a[href^="#"]').forEach((link) => {
-    const targetId = link.hash.slice(1);
+    const targetId = link.getAttribute("href").slice(1);
     const target = document.getElementById(targetId);
 
     if (!target) {
@@ -190,9 +195,15 @@ document.querySelectorAll('.top-nav a[href^="#"]').forEach((link) => {
 
     link.addEventListener("click", (event) => {
         event.preventDefault();
-        history.pushState(null, "", link.hash);
         closeMobileMenu();
-        smoothScrollToElement(target, 1350);
+
+        const targetHash = `#${targetId}`;
+
+        if (window.location.hash !== targetHash) {
+            history.pushState(null, "", targetHash);
+        }
+
+        smoothScrollToElement(target, 1250);
     });
 });
 
