@@ -1048,7 +1048,7 @@ section[id] {
     gap: 0.75rem;
     min-width: 0;
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.06em;
     line-height: 1.5;
@@ -2054,7 +2054,7 @@ h1 {
     }
 
     .footer-meta {
-        font-size: 0.7rem;
+        font-size: 0.64rem;
         letter-spacing: 0.05em;
     }
 
