@@ -1,3 +1,6 @@
+document.documentElement.classList.remove("no-js");
+document.documentElement.classList.add("js");
+
 const pageAudio = document.getElementById("page-audio");
 const audioStatus = document.getElementById("audio-status");
 const audioToggle = document.getElementById("audio-toggle");
@@ -187,5 +190,29 @@ document.querySelectorAll('.top-nav a[href^="#"]').forEach((link) => {
         smoothScrollToElement(target, 1350);
     });
 });
+
+const animatedSections = document.querySelectorAll(".content-section");
+
+if (animatedSections.length) {
+    if (reducedMotion.matches) {
+        animatedSections.forEach((section) => section.classList.add("is-visible"));
+    } else {
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.16,
+            rootMargin: "0px 0px -12% 0px"
+        });
+
+        animatedSections.forEach((section) => sectionObserver.observe(section));
+    }
+}
 
 playAudio();
