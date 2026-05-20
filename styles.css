@@ -1763,14 +1763,21 @@ h1 {
     }
 
     .nav-shell {
-        grid-template-columns: minmax(0, 1fr) auto auto;
-        justify-items: stretch;
+        grid-template-columns: auto auto;
+        justify-content: end;
+        justify-items: end;
         gap: 0.65rem;
         padding: 0.85rem 0.8rem;
     }
 
+    .nav-brand {
+        display: none;
+    }
+
     .nav-menu-toggle {
         display: inline-grid;
+        grid-column: 1;
+        grid-row: 1;
         place-items: center;
         justify-self: end;
         width: 2.7rem;
@@ -1815,9 +1822,11 @@ h1 {
 
     .nav-menu {
         grid-column: 1 / -1;
+        grid-row: 2;
         display: grid;
         grid-template-columns: 1fr;
         gap: 0;
+        width: 100%;
         max-height: 0;
         overflow: hidden;
         opacity: 0;
@@ -1844,17 +1853,6 @@ h1 {
         justify-content: stretch;
     }
 
-    .nav-brand {
-        width: auto;
-        min-width: 0;
-    }
-
-    .nav-brand span {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
     .top-nav a:not(.nav-brand) {
         display: flex;
         align-items: center;
@@ -1866,6 +1864,8 @@ h1 {
     }
 
     .audio-control-inline {
+        grid-column: 2;
+        grid-row: 1;
         justify-self: end;
     }
 
@@ -1905,7 +1905,7 @@ h1 {
     }
 
     .feature-strip {
-        margin-top: 1rem;
+        display: none;
     }
 
     .torneio-intro {
