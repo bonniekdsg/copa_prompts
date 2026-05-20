@@ -1337,9 +1337,9 @@ section[id] {
 
 .nav-shell {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: minmax(max-content, 0.85fr) minmax(0, 1.5fr) minmax(max-content, 0.85fr);
     align-items: center;
-    gap: clamp(0.9rem, 2vw, 1.8rem);
+    gap: clamp(1.1rem, 2.6vw, 3rem);
     min-height: 5rem;
     padding: 0.65rem 1rem;
     border: 2px solid rgba(0, 184, 255, 0.82);
@@ -1350,10 +1350,11 @@ section[id] {
 }
 
 .nav-menu {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    display: flex;
     align-items: center;
-    gap: clamp(1rem, 2vw, 1.8rem);
+    justify-content: center;
+    gap: clamp(2rem, 4vw, 4.6rem);
+    min-width: 0;
 }
 
 .nav-menu-toggle {
@@ -1364,7 +1365,7 @@ section[id] {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(1.2rem, 3vw, 2.8rem);
+    gap: clamp(2rem, 4vw, 4.6rem);
     color: #eef6ff;
     font-family: "Jura", system-ui, sans-serif;
     font-size: clamp(0.72rem, 1vw, 0.92rem);
@@ -1423,6 +1424,7 @@ section[id] {
 
 .audio-control-inline {
     justify-self: end;
+    min-width: max-content;
 }
 
 .audio-control-inline .audio-toggle {
