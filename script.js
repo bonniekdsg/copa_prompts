@@ -244,8 +244,8 @@ if (animatedSections.length) {
                 observer.unobserve(entry.target);
             });
         }, {
-            threshold: 0.32,
-            rootMargin: "0px 0px -4% 0px"
+            threshold: 0.08,
+            rootMargin: "0px 0px -12% 0px"
         });
 
         animatedSections.forEach((section) => sectionObserver.observe(section));

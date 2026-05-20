@@ -1230,6 +1230,30 @@ section[id] {
     }
 }
 
+@keyframes mobileCopyEnter {
+    from {
+        opacity: 0;
+        transform: translateY(0.55rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-0.8rem);
+    }
+}
+
+@keyframes compactMobileCopyEnter {
+    from {
+        opacity: 0;
+        transform: translateY(-0.1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-1.35rem);
+    }
+}
+
 @keyframes iconPulse {
     0%,
     100% {
@@ -1913,7 +1937,8 @@ h1 {
         justify-items: center;
         text-align: center;
         gap: 0.4rem;
-        padding-top: 1rem;
+        align-content: start;
+        padding-top: 0.15rem;
         width: 100%;
         max-width: 100%;
         min-width: 0;
@@ -1922,8 +1947,8 @@ h1 {
     .hero-copy {
         width: 100%;
         max-width: 100%;
-        transform: none;
-        animation-name: fadeUp;
+        transform: translateY(-0.8rem);
+        animation-name: mobileCopyEnter;
     }
 
     .title-art {
@@ -1937,12 +1962,9 @@ h1 {
         min-width: 0;
     }
 
+    .brand-stack,
     .hero-badge {
-        width: min(45.08vw, 258px);
-    }
-
-    .shield {
-        max-height: 29svh;
+        display: none;
     }
 
     .feature-strip {
@@ -2064,11 +2086,17 @@ h1 {
     }
 
     .hero-inner {
-        padding-top: 0.6rem;
+        padding-top: 0;
     }
 
-    .hero-badge {
-        width: min(58vw, 233px);
+    .hero-copy {
+        transform: translateY(-1.35rem);
+        gap: 0;
+        animation-name: compactMobileCopyEnter;
+    }
+
+    .title-art {
+        width: min(100%, 760px);
     }
 
     .tagline {
@@ -2078,8 +2106,9 @@ h1 {
 
     .hero-actions {
         flex-direction: column;
-        gap: 0.7rem;
+        gap: 0.55rem;
         width: 100%;
+        margin-top: 0.45rem;
     }
 
     .hero-button {
