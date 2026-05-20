@@ -265,6 +265,16 @@ body {
     mix-blend-mode: screen;
 }
 
+.js .torneio-visual img {
+    opacity: 0;
+    transition: opacity 1300ms ease;
+}
+
+.js #torneio.is-visible .torneio-visual img {
+    opacity: 1;
+    transition-delay: 240ms;
+}
+
 .torneio-cards {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -288,20 +298,20 @@ body {
     opacity: 0;
 }
 
-.js #torneio.is-visible .torneio-card {
+.js #torneio .torneio-cards.is-visible .torneio-card {
     animation: torneioCardEnter 1280ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.js #torneio.is-visible .torneio-card:nth-child(1) {
-    animation-delay: 340ms;
+.js #torneio .torneio-cards.is-visible .torneio-card:nth-child(1) {
+    animation-delay: 120ms;
 }
 
-.js #torneio.is-visible .torneio-card:nth-child(2) {
-    animation-delay: 480ms;
+.js #torneio .torneio-cards.is-visible .torneio-card:nth-child(2) {
+    animation-delay: 260ms;
 }
 
-.js #torneio.is-visible .torneio-card:nth-child(3) {
-    animation-delay: 620ms;
+.js #torneio .torneio-cards.is-visible .torneio-card:nth-child(3) {
+    animation-delay: 400ms;
 }
 
 .torneio-card::before {

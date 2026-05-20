@@ -192,6 +192,7 @@ document.querySelectorAll('.top-nav a[href^="#"]').forEach((link) => {
 });
 
 const animatedSections = document.querySelectorAll(".content-section");
+const torneioCards = document.querySelector(".torneio-cards");
 
 if (animatedSections.length) {
     if (reducedMotion.matches) {
@@ -212,6 +213,28 @@ if (animatedSections.length) {
         });
 
         animatedSections.forEach((section) => sectionObserver.observe(section));
+    }
+}
+
+if (torneioCards) {
+    if (reducedMotion.matches) {
+        torneioCards.classList.add("is-visible");
+    } else {
+        const cardsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.38,
+            rootMargin: "0px 0px -8% 0px"
+        });
+
+        cardsObserver.observe(torneioCards);
     }
 }
 
