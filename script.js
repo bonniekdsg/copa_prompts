@@ -238,4 +238,4 @@ if (torneioCards) {
     }
 }
 
-playAudio();
+setAudioState("paused");
