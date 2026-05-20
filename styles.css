@@ -763,10 +763,24 @@ body {
     opacity: 0.9;
 }
 
-.premio-visual img {
+.premio-visual-frame {
     position: relative;
     z-index: 1;
     width: min(100%, 28rem);
+}
+
+.js .premio-visual-frame {
+    opacity: 0;
+    transform: translateX(4rem);
+}
+
+.js #premiacao.is-visible .premio-visual-frame {
+    animation: premioSlideIn 1320ms cubic-bezier(0.22, 1, 0.36, 1) 260ms both;
+}
+
+.premio-visual img {
+    display: block;
+    width: 100%;
     height: auto;
     object-fit: contain;
     mix-blend-mode: screen;
@@ -1019,6 +1033,18 @@ section[id] {
         opacity: 1;
         transform: none;
         filter: none;
+    }
+}
+
+@keyframes premioSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(4rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
     }
 }
 
@@ -1548,7 +1574,7 @@ h1 {
         min-height: 0;
     }
 
-    .premio-visual img {
+    .premio-visual-frame {
         width: min(100%, 24rem);
     }
 
@@ -1693,7 +1719,7 @@ h1 {
         height: 3.6rem;
     }
 
-    .premio-visual img {
+    .premio-visual-frame {
         width: min(100%, 19rem);
     }
 
