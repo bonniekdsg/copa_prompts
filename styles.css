@@ -1164,7 +1164,7 @@ section[id] {
     content: "";
     position: absolute;
     inset: 48% -10% 0;
-    z-index: -1;
+    z-index: -2;
     pointer-events: none;
     background:
         linear-gradient(rgba(0, 132, 255, 0.24) 1px, transparent 1px),
@@ -1175,6 +1175,93 @@ section[id] {
     opacity: 0.42;
 }
 
+.hero-carousel {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 0;
+    display: flex;
+    align-items: flex-end;
+    height: clamp(7rem, 20vh, 13rem);
+    padding: 0 clamp(1rem, 5vw, 5.6rem) clamp(0.75rem, 2.1vh, 1.4rem);
+    overflow: hidden;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, transparent 0%, rgba(2, 8, 20, 0.42) 46%, rgba(2, 8, 20, 0.94) 100%),
+        radial-gradient(ellipse at bottom center, rgba(0, 163, 255, 0.28), transparent 64%);
+    -webkit-mask-image:
+        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 100%);
+    mask-composite: intersect;
+}
+
+.hero-carousel::before,
+.hero-carousel::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero-carousel::before {
+    inset: 0;
+    background:
+        linear-gradient(90deg, var(--bg) 0%, transparent 16%, transparent 84%, var(--bg) 100%),
+        linear-gradient(180deg, transparent 0%, rgba(2, 8, 20, 0.12) 40%, rgba(2, 8, 20, 0.84) 100%);
+}
+
+.hero-carousel::after {
+    inset: auto 0 0;
+    height: 42%;
+    background: linear-gradient(180deg, transparent, var(--bg));
+}
+
+.hero-carousel-track {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    min-width: max-content;
+    animation: heroCarouselMarquee 36s linear infinite;
+}
+
+.hero-carousel-group {
+    display: flex;
+    align-items: center;
+    gap: clamp(2.4rem, 6vw, 6rem);
+    padding-right: clamp(2.4rem, 6vw, 6rem);
+}
+
+.hero-carousel-group img {
+    display: block;
+    flex: 0 0 auto;
+    width: auto;
+    height: clamp(2.25rem, 5.4vh, 4.6rem);
+    max-width: min(36vw, 24rem);
+    object-fit: contain;
+    filter: drop-shadow(0 0 18px rgba(0, 163, 255, 0.36));
+}
+
+.hero-carousel-group img[src$="logo_sindsemp.png"] {
+    height: clamp(1.15rem, 2.72vh, 2.21rem);
+    max-width: min(23.8vw, 15.3rem);
+}
+
+.hero-carousel-group img[src$="logo_lugano.png"] {
+    height: clamp(2.48rem, 5.94vh, 5.06rem);
+    max-width: min(39.6vw, 26.4rem);
+}
+
+.hero-carousel-group img[src$="logo_semfront.png"] {
+    height: clamp(1.8rem, 4.1vh, 3.35rem);
+    max-width: min(30vw, 18rem);
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -1182,6 +1269,16 @@ section[id] {
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes heroCarouselMarquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-25%);
     }
 }
 
@@ -1738,8 +1835,13 @@ h1 {
     .title-art,
     .hero-button,
     .hero-badge,
+    .hero-carousel-track,
     .audio-control-inline {
         opacity: 1;
+    }
+
+    .hero-carousel-track {
+        animation: none !important;
     }
 }
 
@@ -1945,6 +2047,36 @@ h1 {
         object-fit: contain;
     }
 
+    .hero-carousel {
+        height: clamp(5.25rem, 15vh, 8rem);
+        padding-bottom: 0.6rem;
+    }
+
+    .hero-carousel-group {
+        gap: clamp(1.8rem, 8vw, 3rem);
+        padding-right: clamp(1.8rem, 8vw, 3rem);
+    }
+
+    .hero-carousel-group img {
+        height: clamp(1.9rem, 4.8vh, 3.25rem);
+        max-width: 48vw;
+    }
+
+    .hero-carousel-group img[src$="logo_sindsemp.png"] {
+        height: clamp(0.89rem, 2.38vh, 1.66rem);
+        max-width: 32.3vw;
+    }
+
+    .hero-carousel-group img[src$="logo_lugano.png"] {
+        height: clamp(2.09rem, 5.28vh, 3.58rem);
+        max-width: 52.8vw;
+    }
+
+    .hero-carousel-group img[src$="logo_semfront.png"] {
+        height: clamp(1.45rem, 3.7vh, 2.45rem);
+        max-width: 40vw;
+    }
+
     .hero-actions,
     .brand-stack {
         max-width: 100%;
@@ -2078,6 +2210,35 @@ h1 {
     .title-art {
         width: min(100%, 760px);
         max-height: 34svh;
+    }
+
+    .hero-carousel {
+        height: clamp(4.5rem, 13vh, 6.5rem);
+    }
+
+    .hero-carousel-group {
+        gap: 1.6rem;
+        padding-right: 1.6rem;
+    }
+
+    .hero-carousel-group img {
+        height: clamp(1.65rem, 4.1vh, 2.7rem);
+        max-width: 56vw;
+    }
+
+    .hero-carousel-group img[src$="logo_sindsemp.png"] {
+        height: clamp(0.77rem, 2.13vh, 1.4rem);
+        max-width: 39.1vw;
+    }
+
+    .hero-carousel-group img[src$="logo_lugano.png"] {
+        height: clamp(1.82rem, 4.51vh, 2.97rem);
+        max-width: 61.6vw;
+    }
+
+    .hero-carousel-group img[src$="logo_semfront.png"] {
+        height: clamp(1.25rem, 3.25vh, 2rem);
+        max-width: 48vw;
     }
 
     .tagline {
