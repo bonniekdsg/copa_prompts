@@ -303,6 +303,7 @@ body {
     display: inline-flex;
     justify-content: flex-start;
     color: #cfff33;
+    font-size: 0.78rem;
 }
 
 .groups-header .section-kicker::before {
@@ -310,9 +311,8 @@ body {
 }
 
 .groups-header h2 {
-    font-size: 42px;
-    line-height: 1.02;
-    text-transform: uppercase;
+    font-size: clamp(1.7rem, 2.9vw, 2.55rem);
+    line-height: 1.06;
     text-shadow: 0 0 22px rgba(0, 163, 255, 0.45);
 }
 
@@ -2323,11 +2323,6 @@ h1 {
         padding-top: 3.2rem;
     }
 
-    .groups-header h2 {
-        font-size: clamp(1.7rem, 7vw, 2.6rem);
-        line-height: 1.04;
-    }
-
     .groups-card,
     .groups-card:nth-child(4),
     .groups-card:nth-child(5) {
@@ -2625,7 +2620,7 @@ h1 {
     }
 
     .groups-header h2 {
-        font-size: clamp(1.6rem, 9vw, 2.15rem);
+        font-size: clamp(1.45rem, 8.8vw, 2.15rem);
     }
 
     .groups-card-head {
