@@ -103,6 +103,29 @@ body {
     transform-origin: bottom;
 }
 
+.finals-section {
+    overflow: hidden;
+    padding: clamp(2.6rem, 6vw, 5.2rem) clamp(0.65rem, 3vw, 2rem);
+    background:
+        linear-gradient(rgba(2, 7, 19, 0.36), rgba(2, 7, 19, 0.5)),
+        url("assets/bg_inscricao.webp") center / cover no-repeat,
+        rgba(3, 11, 28, 0.96);
+}
+
+.finals-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(0, 132, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 132, 255, 0.08) 1px, transparent 1px);
+    background-size: 86px 86px;
+    opacity: 0.16;
+    transform: perspective(720px) rotateX(58deg) translateY(18%);
+    transform-origin: bottom;
+}
+
 #como-funciona {
     overflow: hidden;
     background:
@@ -465,6 +488,26 @@ body {
     text-shadow: none;
 }
 
+.groups-team-list .group-champion {
+    margin-left: -0.4rem;
+    padding: 0.72rem 0.85rem 0.72rem 1.1rem;
+    border: 1px solid color-mix(in srgb, var(--group-color) 82%, transparent);
+    border-radius: 0.9rem;
+    background:
+        linear-gradient(135deg, color-mix(in srgb, var(--group-color) 19%, transparent), rgba(4, 13, 31, 0.82) 48%),
+        rgba(4, 13, 31, 0.88);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--group-color) 18%, transparent),
+        0 0 26px color-mix(in srgb, var(--group-color) 22%, transparent);
+    color: #ffffff;
+    text-shadow: 0 0 16px color-mix(in srgb, var(--group-color) 48%, transparent);
+}
+
+.groups-team-list .group-champion span {
+    color: #cfff33;
+    text-shadow: 0 0 12px rgba(207, 255, 51, 0.34);
+}
+
 .groups-team-list li::before {
     content: "";
     position: absolute;
@@ -475,6 +518,50 @@ body {
     border-radius: 50%;
     background: var(--group-color);
     box-shadow: 0 0 12px var(--group-color);
+}
+
+.finals-shell {
+    position: relative;
+    z-index: 1;
+    width: min(1540px, 100%);
+}
+
+.finals-board {
+    position: relative;
+    display: grid;
+    place-items: center;
+    margin: 0 auto;
+    min-height: 0;
+    background: transparent;
+}
+
+.finals-board img {
+    display: block;
+    width: min(100%, 79.9rem);
+    aspect-ratio: 1672 / 700;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: screen;
+    filter: brightness(1.08) saturate(1.1) contrast(1.08);
+}
+
+.js .finals-board img {
+    opacity: 0;
+    transition: opacity 1300ms ease;
+}
+
+.js #caminho-final.is-visible .finals-board img {
+    opacity: 1;
+    transition-delay: 160ms;
+}
+
+.finals-board figcaption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
 }
 
 .torneio-intro {
@@ -2173,6 +2260,7 @@ h1 {
     }
 
     .js #torneio .torneio-card,
+    .js .finals-board img,
     .js .torneio-visual img,
     .js #premiacao .premio-visual-frame {
         opacity: 1;
@@ -2192,6 +2280,17 @@ h1 {
     .award-grid,
     .timeline-list {
         grid-template-columns: 1fr;
+    }
+
+    .finals-shell {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 0.55rem;
+        scrollbar-color: rgba(121, 255, 47, 0.72) rgba(0, 163, 255, 0.12);
+    }
+
+    .finals-board {
+        width: max(56rem, 100%);
     }
 
     .groups-section {
@@ -2298,7 +2397,7 @@ h1 {
     }
 
     .top-nav.is-open .nav-menu {
-        max-height: 18rem;
+        max-height: 24rem;
         opacity: 1;
         padding-top: 0.65rem;
         pointer-events: auto;
