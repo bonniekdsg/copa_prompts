@@ -2,7 +2,6 @@ document.documentElement.classList.remove("no-js");
 document.documentElement.classList.add("js");
 
 const pageAudio = document.getElementById("page-audio");
-const audioStatus = document.getElementById("audio-status");
 const audioToggle = document.getElementById("audio-toggle");
 const heroBadge = document.querySelector(".hero-badge");
 const shield = document.querySelector(".shield");
@@ -72,18 +71,23 @@ function smoothScrollToElement(target, duration = 1250) {
 
 function setAudioState(state) {
     audioToggle.classList.toggle("is-playing", state === "playing");
+    audioToggle.classList.toggle("is-blocked", state === "blocked");
+    audioToggle.setAttribute("aria-pressed", String(state === "playing"));
 
     if (state === "playing") {
-        audioStatus.innerHTML = 'ÁUDIO <strong>LIGADO</strong>';
+        audioToggle.setAttribute("aria-label", "Áudio ligado");
+        audioToggle.title = "Áudio ligado";
         return;
     }
 
     if (state === "blocked") {
-        audioStatus.innerHTML = 'ÁUDIO <strong>BLOQUEADO</strong>';
+        audioToggle.setAttribute("aria-label", "Áudio bloqueado");
+        audioToggle.title = "Áudio bloqueado";
         return;
     }
 
-    audioStatus.innerHTML = 'ÁUDIO <strong>PAUSADO</strong>';
+    audioToggle.setAttribute("aria-label", "Áudio desligado");
+    audioToggle.title = "Áudio desligado";
 }
 
 function playAudio() {
