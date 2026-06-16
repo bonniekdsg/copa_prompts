@@ -231,6 +231,44 @@ if (topNav && navMenuToggle && navMenu) {
     });
 }
 
+const documentMenus = document.querySelectorAll(".document-menu");
+
+if (documentMenus.length) {
+    function closeDocumentMenus(currentMenu = null) {
+        documentMenus.forEach((menu) => {
+            if (menu !== currentMenu) {
+                menu.removeAttribute("open");
+                menu.querySelector("summary")?.setAttribute("aria-expanded", "false");
+            }
+        });
+    }
+
+    documentMenus.forEach((menu) => {
+        const summary = menu.querySelector("summary");
+        summary?.setAttribute("aria-expanded", String(menu.open));
+
+        menu.addEventListener("toggle", () => {
+            summary?.setAttribute("aria-expanded", String(menu.open));
+
+            if (menu.open) {
+                closeDocumentMenus(menu);
+            }
+        });
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element) || !event.target.closest(".document-menu")) {
+            closeDocumentMenus();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeDocumentMenus();
+        }
+    });
+}
+
 const animatedSections = document.querySelectorAll(".content-section");
 const torneioCards = document.querySelector(".torneio-cards");
 

@@ -48,13 +48,15 @@ body {
 
 .hero {
     position: relative;
+    z-index: 2;
     display: grid;
     grid-template-rows: auto minmax(0, 1fr) auto;
     height: 100vh;
     height: 100svh;
     padding: clamp(1.7rem, 4.2vh, 3.1rem) clamp(1.25rem, 5vw, 5.6rem) clamp(1.45rem, 3.2vh, 2.35rem);
     isolation: isolate;
-    overflow: hidden;
+    overflow: visible;
+    overflow-x: clip;
     background: var(--bg);
 }
 
@@ -1211,6 +1213,8 @@ body {
 }
 
 .faq-top {
+    position: relative;
+    z-index: 3;
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
     gap: clamp(1.4rem, 4vw, 4rem);
@@ -1234,21 +1238,27 @@ body {
     align-items: center;
     min-height: 10.8rem;
     padding: 1.45rem 1.55rem;
-    border: 1px solid rgba(0, 163, 255, 0.58);
-    background: rgba(4, 13, 31, 0.66);
-    box-shadow: inset 0 0 0 1px rgba(0, 163, 255, 0.1), 0 22px 70px rgba(0, 102, 255, 0.18);
-    clip-path: polygon(6% 0, 94% 0, 100% 14%, 100% 86%, 94% 100%, 6% 100%, 0 86%, 0 14%);
+    filter: drop-shadow(0 22px 45px rgba(0, 102, 255, 0.18));
 }
 
 .regulation-card::before {
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 0;
     pointer-events: none;
+    border: 1px solid rgba(0, 163, 255, 0.58);
     background:
         linear-gradient(90deg, rgba(0, 163, 255, 0.22), transparent 16%, transparent 84%, rgba(0, 163, 255, 0.22)),
-        linear-gradient(180deg, rgba(0, 163, 255, 0.08), transparent 42%);
-    opacity: 0.72;
+        linear-gradient(180deg, rgba(0, 163, 255, 0.08), transparent 42%),
+        rgba(4, 13, 31, 0.66);
+    box-shadow: inset 0 0 0 1px rgba(0, 163, 255, 0.1);
+    clip-path: polygon(6% 0, 94% 0, 100% 14%, 100% 86%, 94% 100%, 6% 100%, 0 86%, 0 14%);
+}
+
+.regulation-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .regulation-icon {
@@ -1328,7 +1338,81 @@ body {
     height: 1rem;
 }
 
+.document-menu {
+    position: relative;
+    width: max-content;
+    max-width: 100%;
+    z-index: 4;
+}
+
+.document-menu summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.document-menu summary::-webkit-details-marker {
+    display: none;
+}
+
+.document-menu-caret {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 160ms ease;
+}
+
+.document-menu[open] .document-menu-caret {
+    transform: rotate(90deg);
+}
+
+.document-menu[open] {
+    z-index: 12;
+}
+
+.document-menu-list {
+    position: absolute;
+    top: calc(100% + 0.65rem);
+    left: 50%;
+    display: grid;
+    gap: 0.35rem;
+    width: max(100%, 18.5rem);
+    padding: 0.65rem;
+    border: 1px solid rgba(0, 184, 255, 0.46);
+    background: rgba(3, 11, 28, 0.94);
+    box-shadow: 0 20px 38px rgba(0, 0, 0, 0.42), inset 0 0 24px rgba(0, 163, 255, 0.1);
+    transform: translateX(-50%);
+    backdrop-filter: blur(16px);
+}
+
+.document-menu-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    min-height: 2.85rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f8fbff;
+    background: rgba(255, 255, 255, 0.045);
+    font-family: "Jura", system-ui, sans-serif;
+    font-size: 0.86rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.document-menu-list a:hover,
+.document-menu-list a:focus-visible {
+    border-color: rgba(207, 255, 51, 0.72);
+    color: #cfff33;
+    background: rgba(18, 45, 22, 0.36);
+}
+
 .faq-list {
+    position: relative;
+    z-index: 1;
     display: grid;
     gap: 0.85rem;
     counter-reset: faq;
@@ -2067,7 +2151,7 @@ section[id] {
 
 .hero-inner {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     display: grid;
     grid-template-columns: minmax(340px, 0.92fr) minmax(420px, 1.08fr);
     align-items: center;
@@ -2801,6 +2885,17 @@ h1 {
         grid-template-columns: 1fr;
         justify-items: start;
         padding: 1.25rem;
+    }
+
+    .document-menu {
+        width: 100%;
+    }
+
+    .document-menu-list {
+        position: static;
+        width: 100%;
+        margin-top: 0.55rem;
+        transform: none;
     }
 
     .regulation-button {
