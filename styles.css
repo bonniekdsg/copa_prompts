@@ -560,10 +560,10 @@ body {
 .finals-board img {
     display: block;
     width: min(100%, 79.9rem);
-    aspect-ratio: 1672 / 700;
+    aspect-ratio: 1501 / 689;
     height: auto;
     object-fit: contain;
-    mix-blend-mode: screen;
+    mix-blend-mode: normal;
     filter: brightness(1.08) saturate(1.1) contrast(1.08);
 }
 
